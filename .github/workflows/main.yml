@@ -15,35 +15,17 @@ jobs:
     - name: Install deps
       run: sudo apt-get install cmake libtool nasm libpng-dev pkg-config build-essential wget -yq --no-install-suggests --no-install-recommends --assume-yes
     
-    - name: Create dir
-      run: mkdir src
-    
     - name: Download source
-      run: cd src && wget --no-check-certificate https://github.com/mozilla/mozjpeg/archive/v4.1.5.tar.gz -O mozjpeg-4.1.5.tar.gz
+      run: wget --no-check-certificate https://github.com/mozilla/mozjpeg/archive/v4.1.5.tar.gz -O mozjpeg-4.1.5.tar.gz
     
     - name: Extract files
       run: tar -xzvf mozjpeg-4.1.5.tar.gz
     
-    - name: LS
-      run: ls -lh
-    
     - name: Change dir
       run: cd mozjpeg-4.1.5
-
-    - name: LS
-      run: ls -lh
-    
-    - name: Create dir
-      run: mkdir result
-      
-    - name: Change dir
-      run: cd result
-
-    - name: LS
-      run: ls -lh
     
     - name: Build
-      run:  cmake .. && cmake --build .
+      run:  cmake . && cmake --build .
     
     - name: Release
       uses: softprops/action-gh-release@v1
