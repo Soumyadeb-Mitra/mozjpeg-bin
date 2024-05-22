@@ -21,11 +21,8 @@ jobs:
     - name: Extract files
       run: tar -xzvf mozjpeg-4.1.5.tar.gz
     
-    - name: Change dir
-      run: cd mozjpeg-4.1.5
-    
     - name: Build
-      run:  cmake . && cmake --build .
+      run:  cmake mozjpeg-4.1.5 && cmake --build mozjpeg-4.1.5
     
     - name: Release
       uses: softprops/action-gh-release@v1
