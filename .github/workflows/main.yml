@@ -26,9 +26,15 @@ jobs:
     
     - name: Change dir
       run: cd mozjpeg-4.1.5
+      
+    - name: Create dir
+      run: mkdir result
+      
+    - name: Change dir
+      run: cd result
     
     - name: Build
-      run: mkdir result && cd result && cmake .. && cmake --build .
+      run:  cmake .. && cmake --build .
     
     - name: Release
       uses: softprops/action-gh-release@v1
