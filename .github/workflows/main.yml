@@ -9,8 +9,11 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
+    - name: Update index
+      run: sudo apt-get update
+    
     - name: Install deps
-      run: apt-get update && apt-get install cmake libtool nasm libpng-dev pkg-config build-essential wget -yq --no-install-suggests --no-install-recommends --assume-yes
+      run: sudo apt-get install cmake libtool nasm libpng-dev pkg-config build-essential wget -yq --no-install-suggests --no-install-recommends --assume-yes
     
     - name: Create dir
       run: mkdir src && cd src
