@@ -20,19 +20,13 @@ jobs:
     
     - name: Extract files
       run: tar -xzvf mozjpeg-4.1.5.tar.gz
-    
-    - name: CMake
-      run:  cmake mozjpeg-4.1.5
-
-    - name: LS
-      run:  ls -lh
 
     - name: Build
-      run:  cmake --build .
+      run: cmake mozjpeg-4.1.5 && cmake --build .
     
     - name: Release
       uses: softprops/action-gh-release@v1
       with:
-        files: src/mozjpeg-4.1.5/result/cjpeg-static
+        files: cjpeg-static
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
