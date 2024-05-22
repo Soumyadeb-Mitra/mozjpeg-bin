@@ -1,0 +1,32 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+    - '*'
+
+jobs:
+  dl:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Install deps
+      run: sudo apt-get update && apt-get install cmake libtool nasm libpng-dev pkg-config build-essential wget -yq --no-install-suggests --no-install-recommends --force-yes
+    - name: Create dir
+      run: mkdir src && cd src
+    - name: Download source
+      run: wget --no-check-certificate https://github.com/mozilla/mozjpeg/archive/v4.1.5.tar.gz -O mozjpeg-4.1.5.tar.gz
+    - name: Extract files
+      run: tar -xzvf mozjpeg-4.1.5.tar.gz
+    - name: Change dir
+      run: cd mozjpeg-4.1.5
+    - name: Build
+      run: mkdir result && cd result && cmake .. && cmake --build .
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: src/mozjpeg-4.1.5/result/cjpeg-static
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
