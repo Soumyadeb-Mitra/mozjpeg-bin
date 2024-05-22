@@ -27,9 +27,15 @@ jobs:
     - name: Extract files
       run: tar -xzvf mozjpeg-4.1.5.tar.gz
     
+    - name: LS
+      run: ls -lh
+    
     - name: Change dir
       run: cd mozjpeg-4.1.5
-      
+
+    - name: LS
+      run: ls -lh
+    
     - name: Create dir
       run: mkdir result
       
