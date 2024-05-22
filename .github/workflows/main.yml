@@ -35,6 +35,9 @@ jobs:
       
     - name: Change dir
       run: cd result
+
+    - name: LS
+      run: ls -lh
     
     - name: Build
       run:  cmake .. && cmake --build .
